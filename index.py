@@ -20,10 +20,10 @@ imaplib.Commands['ID'] = ('AUTH')
 # ==========================================
 # 🔧 腾讯云网页端通用配置区
 # ==========================================
-EMAIL_USER = "needliulin@163.com"        # 网易邮箱账号
-EMAIL_PASS = "XHgxdaafJTTXv2sk"          # 网易邮箱授权码
-PUSHDEER_KEY = "PDU42336TT60JkqHMGFLcKdETkZcjRTg83nNIMBaT"  # 📌 你的 PushDeer Key
-DAYS_LIMIT = 10                          # 高校新闻爬取近 10 天的数据
+EMAIL_USER = "needliulin@163.com"  # 网易邮箱账号
+EMAIL_PASS = "XHgxdaafJTTXv2sk"  # 网易邮箱授权码
+PUSHDEER_KEY = "PDU42336TT60JkqHMGFLcKdETkZcjRTg83nNIMBaT"  # 📌 你的 PushDeer Key
+DAYS_LIMIT = 10  # 高校新闻爬取近 10 天的数据
 # ==========================================
 
 def translate_safe_chunk(text):
