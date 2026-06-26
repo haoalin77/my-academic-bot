@@ -1,0 +1,29 @@
+name: Daily Academic Report Bot
+
+on:
+  push:                    # 当你手动修改代码时，会触发一次，方便测试
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 1 * * *'    # ⏰ 定时闹钟（UTC 时间凌晨 01:00，等于北京时间早上 09:00）
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest # 使用最新的 Linux 云端系统
+
+    steps:
+    - name: 1. 签出仓库代码
+      uses: actions/checkout@v4
+
+    - name: 2. 初始化 Python 环境
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9' # 指定和腾讯云一样的 Python 3.9 环境
+
+    - name: 3. 一键安装依赖包
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 "urllib3<2"
+
+    - name: 4. 火力全开！运行自动化脚本
+      run: |
+        python index.py
