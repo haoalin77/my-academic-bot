@@ -1,14 +1,14 @@
 name: Daily Academic Report Bot
 
 on:
-  push:                    # 当你手动修改代码时，会触发一次，方便测试
+  push:                    # 保留手动触发：当你改代码时会立刻跑一次，方便测试
     branches: [ "main" ]
   schedule:
-    - cron: '0 1 * * *'    # ⏰ 定时闹钟（UTC 时间凌晨 01:00，等于北京时间早上 09:00）
+    - cron: '5 1 * * *'    # ⏰ 闹钟已调校：UTC 01:05 = 北京时间 09:05 准时群发
 
 jobs:
   run-bot:
-    runs-on: ubuntu-latest # 使用最新的 Linux 云端系统
+    runs-on: ubuntu-latest
 
     steps:
     - name: 1. 签出仓库代码
@@ -17,7 +17,7 @@ jobs:
     - name: 2. 初始化 Python 环境
       uses: actions/setup-python@v5
       with:
-        python-version: '3.9' # 指定和腾讯云一样的 Python 3.9 环境
+        python-version: '3.9'
 
     - name: 3. 一键安装依赖包
       run: |
