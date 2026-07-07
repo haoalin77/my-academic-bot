@@ -69,13 +69,28 @@ def calculate_reminders():
         medium_msg = f"⏳【培养基进度】今天无需配置。距离下次配置还有 **{days_left_medium}** 天（预计 `{next_medium_date.strftime('%m-%d')}`）。"
 
     # ----------------------------------------------------
-    # 📋 3. 组装最终发送的 Markdown 文本
+    # 🧫 3. 培养基EPA
+    # ----------------------------------------------------
+   epa_anchor = datetime(2026, 7, 7).date()
+    delta_epa = (today - epa_anchor).days
+   epa_mod = delta_epa % 3
+
+    if epa_mod == 0:
+        epa_msg = "🔴 **【今日任务】今天必须配置EPA！**"
+    else:
+        days_left_epa = 3 - epa_mod
+        next_epa_date = today + timedelta(days=days_left_epa)
+        epa_msg = f"⏳【培养基进度】今天无需配EPA。距离下次配EPA还有 **{days_left_epa}** 天（预计 `{next_epa_date.strftime('%m-%d')}`）。"
+
+    # ----------------------------------------------------
+    # 📋 4. 组装最终发送的 Markdown 文本
     # ----------------------------------------------------
     push_title = f"🧪 实验排班提醒 ({today.strftime('%m-%d')})"
 
     markdown_content = f"### 📅 实验试剂/培养基排班雷达\n\n"
     markdown_content += f"- {reagent_msg}\n"
     markdown_content += f"- {medium_msg}\n\n"
+    markdown_content += f"- {epa_msg}\n\n"
     markdown_content += f"---\n"
     markdown_content += f"💡 *💡 记得在实验记录本上同步登记日志哦！*"
 
