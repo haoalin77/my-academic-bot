@@ -71,8 +71,8 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧫 3. 培养基EPA
     # ----------------------------------------------------
-   epa_anchor = datetime(2026, 7, 7).date()
-    delta_epa = (today - epa_anchor).days
+   epa_anchor = datetime(2026, 7, 4).date()
+   delta_epa = (today - epa_anchor).days
    epa_mod = delta_epa % 3
 
     if epa_mod == 0:
