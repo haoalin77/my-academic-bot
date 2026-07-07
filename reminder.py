@@ -48,11 +48,11 @@ def calculate_reminders():
     reagent_mod = delta_reagent % 5
 
     if reagent_mod == 0:
-        reagent_msg = "🔴 **【今日任务】今天必须配置新试剂！**"
+        reagent_msg = "🔴 **【今日任务】今天必须配置啶虫脒！**"
     else:
         days_left_reagent = 5 - reagent_mod
         next_reagent_date = today + timedelta(days=days_left_reagent)
-        reagent_msg = f"⏳【试剂进度】今天无需配置。距离下次配置还有 **{days_left_reagent}** 天（预计 `{next_reagent_date.strftime('%m-%d')}`）。"
+        reagent_msg = f"⏳啶虫脒还有 **{days_left_reagent}** 天（预计 `{next_reagent_date.strftime('%m-%d')}`）。"
 
     # ----------------------------------------------------
     # 🧫 2. 培养基配置逻辑（锚定 2026年7月6日，6天一循环）
@@ -62,25 +62,25 @@ def calculate_reminders():
     medium_mod = delta_medium % 6
 
     if medium_mod == 0:
-        medium_msg = "🔴 **【今日任务】今天必须配置新培养基！**"
+        medium_msg = "🔴 **【今日任务】今天必须配置HB-4！**"
     else:
         days_left_medium = 6 - medium_mod
         next_medium_date = today + timedelta(days=days_left_medium)
-        medium_msg = f"⏳【培养基进度】今天无需配置。距离下次配置还有 **{days_left_medium}** 天（预计 `{next_medium_date.strftime('%m-%d')}`）。"
+        medium_msg = f"⏳HB-4还有 **{days_left_medium}** 天（预计 `{next_medium_date.strftime('%m-%d')}`）。"
 
     # ----------------------------------------------------
     # 🧫 3. 培养基EPA
     # ----------------------------------------------------
-   epa_anchor = datetime(2026, 7, 4).date()
-   delta_epa = (today - epa_anchor).days
-   epa_mod = delta_epa % 3
+    epa_anchor = datetime(2026, 7, 4).date()
+    delta_epa = (today - epa_anchor).days
+    epa_mod = delta_epa % 3
 
     if epa_mod == 0:
         epa_msg = "🔴 **【今日任务】今天必须配置EPA！**"
     else:
         days_left_epa = 3 - epa_mod
         next_epa_date = today + timedelta(days=days_left_epa)
-        epa_msg = f"⏳【培养基进度】今天无需配EPA。距离下次配EPA还有 **{days_left_epa}** 天（预计 `{next_epa_date.strftime('%m-%d')}`）。"
+        epa_msg = f"⏳下次配EPA还有 **{days_left_epa}** 天（预计 `{next_epa_date.strftime('%m-%d')}`）。"
 
     # ----------------------------------------------------
     # 📋 4. 组装最终发送的 Markdown 文本
