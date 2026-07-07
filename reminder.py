@@ -43,14 +43,14 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧪 1. 试剂配置逻辑（锚定 2026年7月10日，9天一循环）
     # ----------------------------------------------------
-    reagent_anchor = datetime(2026, 7, 10).date()
+    reagent_anchor = datetime(2026, 7, 7).date()
     delta_reagent = (today - reagent_anchor).days
-    reagent_mod = delta_reagent % 9
+    reagent_mod = delta_reagent % 5
 
     if reagent_mod == 0:
         reagent_msg = "🔴 **【今日任务】今天必须配置新试剂！**"
     else:
-        days_left_reagent = 9 - reagent_mod
+        days_left_reagent = 5 - reagent_mod
         next_reagent_date = today + timedelta(days=days_left_reagent)
         reagent_msg = f"⏳【试剂进度】今天无需配置。距离下次配置还有 **{days_left_reagent}** 天（预计 `{next_reagent_date.strftime('%m-%d')}`）。"
 
