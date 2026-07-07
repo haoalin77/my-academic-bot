@@ -41,7 +41,7 @@ def calculate_reminders():
     today = datetime.now().date()
 
     # ----------------------------------------------------
-    # 🧪 1. 试剂配置逻辑（锚定 2026年7月10日，9天一循环）
+    # 🧪 1. 试剂配置逻辑（锚定 2026年7月7日，5天一循环）
     # ----------------------------------------------------
     reagent_anchor = datetime(2026, 7, 7).date()
     delta_reagent = (today - reagent_anchor).days
