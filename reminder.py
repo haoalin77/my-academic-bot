@@ -43,7 +43,7 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧪 1. 试剂配置逻辑（锚定 2026年7月7日，5天一循环）
     # ----------------------------------------------------
-    reagent_anchor = datetime(2026, 7, 7).date()
+    reagent_anchor = datetime(2026, 7, 8).date()
     delta_reagent = (today - reagent_anchor).days
     reagent_mod = delta_reagent % 5
 
