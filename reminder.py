@@ -43,7 +43,7 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧪 1. 试剂配置逻辑（锚定 2026年7月7日，5天一循环）
     # ----------------------------------------------------
-    reagent_anchor = datetime(2026, 7, 8).date()
+    reagent_anchor = datetime(2026, 7, 24).date()
     delta_reagent = (today - reagent_anchor).days
     reagent_mod = delta_reagent % 5
 
@@ -57,7 +57,7 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧫 2. 培养基配置逻辑（锚定 2026年7月6日，6天一循环）
     # ----------------------------------------------------
-    medium_anchor = datetime(2026, 7, 6).date()
+    medium_anchor = datetime(2026, 8 ,24).date()
     delta_medium = (today - medium_anchor).days
     medium_mod = delta_medium % 6
 
@@ -71,7 +71,7 @@ def calculate_reminders():
     # ----------------------------------------------------
     # 🧫 3. 培养基EPA
     # ----------------------------------------------------
-    epa_anchor = datetime(2026, 7, 4).date()
+    epa_anchor = datetime(2026, 8, 26).date()
     delta_epa = (today - epa_anchor).days
     epa_mod = delta_epa % 3
 
