@@ -103,6 +103,6 @@ def calculate_reminders():
 if __name__ == "__main__":
     print("⏸️ 提醒服务已暂停")
     # 直接 exit() 或 return，阻断后续的程序执行
-    import sys
-    sys.exit(0)
-    #calculate_reminders()
+    #import sys
+    #sys.exit(0)
+    calculate_reminders()
