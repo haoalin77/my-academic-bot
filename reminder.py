@@ -50,7 +50,7 @@ def calculate_reminders():
     if reagent_mod == 0:
         reagent_msg = "🔴 **【今日任务】今天必须配置啶虫脒！**"
     else:
-        days_left_reagent = 5 - reagent_mod
+        days_left_reagent = 7 - reagent_mod
         next_reagent_date = today + timedelta(days=days_left_reagent)
         reagent_msg = f"⏳啶虫脒还有 **{days_left_reagent}** 天（预计 `{next_reagent_date.strftime('%m-%d')}`）。"
 
