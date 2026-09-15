@@ -3,6 +3,8 @@ import os
 import requests
 import urllib3
 from datetime import datetime, timedelta
+import time
+import sys
 
 # 禁用安全警告（保持和你原有脚本一致的严谨性）
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -10,31 +12,28 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # ==========================================
 # 🔧 通用配置区
 # ==========================================
-PUSHDEER_KEY = "PDU42336TT60JkqHMGFLcKdETkZcjRTg83nNIMBaT"  # 📌 你的 PushDeer Key
+SEND_KEY = "SCT316351T9sZW7a3Jjsa1cTc1Jwb9I1Ma"
 # ==========================================
 
-def send_pushdeer_msg(title, content):
-    """通过 PushDeer 发送微信 Markdown 推送"""
-    url = "https://api2.pushdeer.com/message/push"
+def send_wechat_msg(push_title, markdown_content):
+    """通过 Server酱 发送微信通知"""
+    if SEND_KEY == "YOUR_SEND_KEY" or not SEND_KEY:
+        print("    ⚠️ 未配置 SendKey，跳过微信推送。")
+        return
+
+    push_url = f"https://sctapi.ftqq.com/{SEND_KEY}.send"
     data = {
-        "pushkey": PUSHDEER_KEY,
-        "text": title,
-        "desp": content,
-        "type": "markdown"
+        "title": push_title,
+        "desp": markdown_content
     }
     try:
-        res = requests.post(url, data=data, timeout=15)
-        result = res.json()
-        res_str = str(result.get("content", {}).get("result", ""))
-        if result.get("code") == 0 or "ok" in res_str.lower():
-            print(f"📡 PushDeer 实验渠道推送成功: {title}")
-            return True
+        response = requests.post(push_url, data=data)
+        if response.status_code == 200:
+            print("    📲 微信推送成功！请查看手机。")
         else:
-            print(f"❌ PushDeer 实验推送失败: {result}")
-            return False
+            print(f"    ❌ 微信推送失败，状态码: {response.status_code}")
     except Exception as e:
-        print(f"❌ 微信推送发生异常: {e}")
-        return False
+        print(f"    ❌ 微信推送报错: {e}")
 
 def calculate_reminders():
     # 获取今天的北京时间
@@ -60,7 +59,7 @@ def calculate_reminders():
     print(markdown_content)
 
     # 执行发送
-    send_pushdeer_msg(push_title, markdown_content)
+    send_wechat_msg(push_title, markdown_content)
 
 if __name__ == "__main__":
     print("⏸️ 提醒服务已暂停")
