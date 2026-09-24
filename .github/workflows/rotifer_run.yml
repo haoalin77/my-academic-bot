@@ -1,0 +1,30 @@
+name: 📅 每日轮虫保种提醒
+
+on:
+  push:
+    branches: [ "main" ]  # 当你修改代码并推送到 main 分支时，会立刻触发一次，方便你测试
+  schedule:
+    #
+    # UTC 7:14 = 北京时间次日 19:14 (使用 14分 这种非整点数字，能避开 GitHub 定时任务的高峰期排队)
+    - cron: '14 7 * * *'
+
+jobs:
+  run-reminder:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛠️ 步骤1：拉取当前仓库代码
+      uses: actions/checkout@v3
+
+    - name: 🐍 步骤2：初始化 Python 环境
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 📦 步骤3：安装必要的依赖库 (requests)
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: 🚀 步骤4：执行配置计算并推送 PushDeer
+      run: python rotifer_reminder.py
