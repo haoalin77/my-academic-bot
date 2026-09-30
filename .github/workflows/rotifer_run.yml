@@ -1,12 +1,9 @@
 name: 📅 每日轮虫保种提醒
 
 on:
-  push:
-    branches: [ "main" ]  # 当你修改代码并推送到 main 分支时，会立刻触发一次，方便你测试
-  schedule:
-    #
-    # UTC 7:14 = 北京时间次日 19:14 (使用 14分 这种非整点数字，能避开 GitHub 定时任务的高峰期排队)
-    - cron: '14 7 * * *'
+  workflow_dispatch:   # 只允许手动运行
+  # schedule:
+  #   - cron: '14 7 * * *'   # 需要恢复每天定时时，取消注释
 
 jobs:
   run-reminder:
